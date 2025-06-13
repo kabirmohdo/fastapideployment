@@ -1,0 +1,10 @@
+uvicorn
+fastapi
+joblib
+numpy==1.26.4
+pandas
+streamlit
+ipykernel
+scikit-learn
+seaborn
+python-multipart
