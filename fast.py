@@ -13,7 +13,7 @@ def welcome():
 
 
 class Item(BaseModel):
-    sepal_length : float =  Field(min_length = 3)
+    sepal_length : float = Field(lt=3)
     sepal_width : float
     petal_length : float
     petal_width : float
@@ -28,8 +28,10 @@ async def create_data(data : Item):
         'petal width (cm)': data.petal_width
     }
 
-    if new_data['sepal length (cm)'] < 3 :
-        raise HTTPException(status_code=400, detail="Sepal length must be at least 3 cm.")
+    if new_data['sepal length (cm)']  > 3 :
+        raise HTTPException(status_code=400, detail="Sepal length must be less than 3 cm")
+
+    
 
     df = pd.DataFrame([new_data])
     prediction = model.predict(df)
